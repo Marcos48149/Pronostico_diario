@@ -1,14 +1,14 @@
 
 import pandas as pd
 from twilio.rest import Client
-from twilio_config import TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,PHONE_NUMBER,API_KEY_WAPI
+from dotenv import load_dotenv
 from datetime import datetime
 import requests
 from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 
-
+load_dotenv()
 
 def get_date():
 
@@ -51,10 +51,13 @@ def create_df(data):
 
     return df_rain
 
-def send_message(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,input_date,df,query):
+
+
+def send_message(TWILIO_ACCOUNT_SID,TWILIO_AUTH_TOKEN,PHONE_NUMBER,input_date,df,query):
 
     account_sid = TWILIO_ACCOUNT_SID
     auth_token = TWILIO_AUTH_TOKEN
+    
 
     client = Client(account_sid, auth_token)
 
